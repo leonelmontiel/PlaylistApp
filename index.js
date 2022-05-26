@@ -1,10 +1,18 @@
 const express = require("express")
 const { port } = require("./config")
 
+// Routes
+const auth = require("./routes/auth")
 
 const app = express()
 
-app.get("/", function(res,res) {
+//Configurando template engine
+app.set("view engine", "pug")
+app.set("views", "views")
+
+app.use(auth)
+
+app.get("/", function(req,res) {
     return res.json({
         hola:"mundo"
     })

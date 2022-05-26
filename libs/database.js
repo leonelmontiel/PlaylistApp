@@ -1,11 +1,12 @@
-const mysql = require("mysql2")
+const mysql = require("mysql2");
+const { dbHost, dbPort, dbUser, dbPassword, dbName } = require("../config");
 
 const connection = mysql.createConnection({
-    host: '127.0.0.1',
-    port: 3306,
-    user: 'Leo',
-    password: 'Kirarully05',
-    database: 'PlaylistApp'
+    host: dbHost,
+    port: dbPort,
+    user: dbUser,
+    password: dbPassword,
+    database: dbName
 })
 
 // gestión de promesa propia
