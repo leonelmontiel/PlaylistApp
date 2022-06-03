@@ -1,9 +1,14 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-    body 
-        h1 Hola mundo
+extends layouts/main-layout.pug
+
+block title 
+    title Login
+
+block content
+    //- Content-Type: x-www-form-urlencoded
+    form(action="/login", method="post")
+        input(class="m-3 p-1 border" type="email", name="email", value=user ? user.email : null placeholder="Correo")
+        input(class="m-3 p-1 border" type="password", name="password", value=user ? user.password : null placeholder="Contraseña")
+        button(class="bg-blue-300 m-3 p-1 border") Iniciar sesión
+
+    if error
+        p(class="bg-red-300 text-red-900 p-3") #{error}
