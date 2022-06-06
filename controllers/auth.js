@@ -12,9 +12,17 @@ class AuthController{
         if(success && user) {
             try {
                 if(await bcrypt.compare(password, user.password)) {
-                    req.session.loggedIn = true
+                    /* req.session.loggedIn = true
+                    req.session.name = user.name
                     req.session.email = user.email
-                    req.session.idUser = user.id
+                    req.session.idUser = user.id */
+
+                    req.session.user = {
+                        leggedIn: true,
+                        name: user.username,
+                        email: user.email,
+                        idUser: user.id
+                    }
                     return res.redirect("/")
                 }
             } catch (error) {
@@ -57,9 +65,12 @@ class AuthController{
 
             console.log(result)
 
-            req.session.loggedIn = true
-            req.session.email = data.email
-            req.session.idUser = result.insertId
+            req.session.user = {
+                leggedIn: true,
+                name: data.username,
+                email: data.email,
+                idUser: result.id
+            }
 
 
             return res.redirect("/")

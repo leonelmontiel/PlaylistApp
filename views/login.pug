@@ -5,10 +5,12 @@ block title
 
 block content
     //- Content-Type: x-www-form-urlencoded
-    form(action="/login", method="post")
-        input(class="m-3 p-1 border" type="email", name="email", value=user ? user.email : null placeholder="Correo")
-        input(class="m-3 p-1 border" type="password", name="password", value=user ? user.password : null placeholder="Contraseña")
-        button(class="bg-blue-300 m-3 p-1 border") Iniciar sesión
+    div(class="container-fluid d-flex justify-content-center bg-dark")
+        div(class="col-12 col-md-9 col-lg-6 p-3")
+            form(action="/login", method="post" class="d-flex flex-column gap-4")
+                input(class="p-1 border rounded" type="email", name="email", value=user ? user.email : null placeholder="Correo")
+                input(class="p-1 border rounded" type="password", name="password", value=user ? user.password : null placeholder="Contraseña")
+                button(class="btn btn-primary ") Iniciar sesión
 
-    if error
-        p(class="bg-red-300 text-red-900 p-3") #{error}
+                if error
+                    p(class="bg-danger text-white p-3") #{error}
